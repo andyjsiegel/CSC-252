@@ -1,0 +1,11 @@
+root@1053d125fb6b:~/myMountedVolume/2025_01_16_Simulation_Project_0/preProject_files# ./grade_preProject
+
+************* Running the testcases *************
+
+---
+
+- Testcase 'test_01.s' passed
+
+---
+
+Testcases passed.  Your environment appears to be working correctly.
