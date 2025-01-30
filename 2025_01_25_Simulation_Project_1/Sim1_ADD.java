@@ -6,10 +6,12 @@
 
 public class Sim1_ADD
 {
+	// the execute function takes 2 32-bit binary values a and b and adds them together.
+	// it produces a result of the sum as a 32-bit binary number and two bits for carry out and overflow. 
 	public void execute()
 	{
 		boolean carryNext = false;
-		
+		// for each loop, calculate the sum and carry using two XORs, two ANDs, and one OR. 
 		for (int i=0; i<32; i++) {
 			
 			/* a half adder has two input bits, and returns a carry out and a sum

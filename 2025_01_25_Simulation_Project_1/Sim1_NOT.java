@@ -5,6 +5,7 @@
 
 public class Sim1_NOT
 {
+	// the execute function takes a boolean value and negates it. 
 	public void execute()
 	{
 		

@@ -5,6 +5,8 @@
 
 public class Sim1_AND
 {
+	// the execute function takes two boolean values
+	// a and b and does the && (and) operation on them.
 	public void execute()
 	{
 		boolean value_a = a.get();

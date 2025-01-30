@@ -5,6 +5,7 @@
 
 public class Sim1_OR
 {
+	// the execute function takes two boolean values and returns the OR of them.
 	public void execute()
 	{
 		boolean value_a = a.get();
