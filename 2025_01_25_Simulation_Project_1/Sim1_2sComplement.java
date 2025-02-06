@@ -5,27 +5,29 @@
 
 public class Sim1_2sComplement
 {
-	public void execute()
-	{
-
+	/* the execute function will loop through the bits of the input and do 3 things in the loop
+	1. invert the bits of the input
+	2. add the inverted bits as one input to ADD
+	3. add 00000...1 as the second input to ADD
+	then the result of the adder is returned as the output of this file. */
+	public void execute() {
 		for (int i=0; i<32; i++) {
 			boolean value = in[i].get();
 			inverters[i].in.set(value);
 			inverters[i].execute();
 			adder.a[i].set(inverters[i].out.get());
 			if (i != 0) {
-				adder.b[i].set(false);
+				adder.b[i].set(false); // set all bits except LSB to 0
 			}
 		}
-
+		// set the first bit to 1
 		adder.b[0].set(true);
 		adder.execute();
 
+		// loop thru all bits of sum and set them to output bit
 		for (int i=0; i<32; i++) {
-			// System.out.print(adder.b[i].get() ? 1 : 0);
 			out[i].set(adder.sum[i].get());
 		}
-
 	}
 
 	// you shouldn't change these standard variables...

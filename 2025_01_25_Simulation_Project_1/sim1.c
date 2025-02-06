@@ -6,6 +6,9 @@
 
 #include "sim1.h"
 
+/* this function adds two decimal numbers by using bit shifting in a loop
+and calculating carry and overflow thru logical operators.
+it takes input and output defined in the struct in sim1.h */
 void execute_add(Sim1Data *obj) {
 	
 	// get the addends
@@ -20,9 +23,10 @@ void execute_add(Sim1Data *obj) {
 
     // Iterate over each bit
     for (int i = 0; i < 32; i++) {
-		if (isSubtraction) { // if the bit needs to be substracted, flip the bit before assingning it 
+		if (isSubtraction) { 
+			/* if the bit needs to be substracted, flip the bit before assingning it 
         	// Flip the bits of b (XOR with 1) to get the 1's complement 
-			// (by passing in isSubtraction as carry) this is now 2s complement
+			(by passing in isSubtraction as carry) this is now 2s complement */
             b = b ^ (1 << i);  // flip the i-th bit of b with XOR operator     
     	}
         // Extract bits from a and b

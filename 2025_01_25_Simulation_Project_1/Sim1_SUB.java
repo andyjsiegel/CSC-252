@@ -6,20 +6,28 @@
 
 public class Sim1_SUB
 {
+	// this function subtracts two 32-bit binary numbers. it does this by using twos complement
+	// on the second number as `a-b` = `a + (-b)`
 	public void execute()
 	{
+		// first loop, set the first addend of the adder and
+		// add all of b's bits to the twos complement
 		for (int i=0; i<32; i++) {
 			adder.a[i].set(a[i].get());
 			twos.in[i].set(b[i].get());
 		}
+		// execute twos complement on b
 		twos.execute();
 
+		// add the twosified b value to the adder
 		for (int i=0; i<32; i++) {
 			adder.b[i].set(twos.out[i].get());
 		}
-
+		
+		// add a + (-b) to calculate the difference
 		adder.execute();
 		
+		// set the output
 		for (int i=0; i<32; i++) {
 			sum[i].set(adder.sum[i].get());
 		}
