@@ -1,0 +1,5 @@
+a:01010
+b:01011
+Result:10101
+carryout:0
+overflow:1
