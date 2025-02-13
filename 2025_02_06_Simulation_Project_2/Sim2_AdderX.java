@@ -20,6 +20,9 @@ public class Sim2_AdderX {
     XOR xorForNotEquals;
     AND and;
 
+    /* constructor: takes in the number of bits in the adder, 
+    sets the bits to a global variable so it can be used in 
+    execute() and initializes a ton of RussWires */
     public Sim2_AdderX(int bits) {
         this.bits = bits;
         

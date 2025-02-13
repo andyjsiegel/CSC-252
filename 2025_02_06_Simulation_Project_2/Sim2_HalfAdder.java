@@ -11,6 +11,7 @@ public class Sim2_HalfAdder {
     AND and;
     XOR xor;
     
+    // initializes the half adder with RussWires for a, b, sum, and carry + an AND and XOR gate
     public Sim2_HalfAdder() {
         a = new RussWire();
         b = new RussWire();

@@ -14,6 +14,8 @@ public class Sim2_FullAdder {
     Sim2_HalfAdder halfAdder1, halfAdder2;
     OR or;
     
+    /* Constructor for the full adder. It creates RussWires for a, b, 
+    carryIn, sum, and carryOut. It adds the inputs using two half adder classes */
     public Sim2_FullAdder() {
         a = new RussWire();
         b = new RussWire();
