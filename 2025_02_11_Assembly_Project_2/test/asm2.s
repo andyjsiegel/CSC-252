@@ -1,3 +1,8 @@
+# Assembly Project 2 
+# Author: Andy Siegel
+# Date: 02/19/2025
+# Tasks: Fibonacci, Print Square, Run Check, Count Words, Reverse String
+
 .globl studentMain
 studentMain:
     addiu $sp, $sp, -24                 # allocate stack space -- default of 24 here
@@ -99,6 +104,40 @@ fib_loop:
     la   $a0, NEWLINE
     syscall
 
+# C implementation
+# if (square != 0)
+#    {
+#        // NOTE: square_fill is a byte
+#        // NOTE: square_size is a word
+#
+#        for (int row=0; row < square_size; row++)
+#        {
+#            char lr, mid;
+#            if (row == 0 || row == square_size-1)
+#            {
+#                lr  = '+';
+#                mid = '-';
+#            }
+#            else
+#            {
+#                lr  = '|';
+#                mid = square_fill;
+#            }
+#
+#            /* The %c format specifier, in printf(), prints a single
+#             * character.  MIPS syscall 11 will be useful here.
+#             */
+#
+#            printf("%c", lr);
+#            for (int i=1; i<square_size-1; i++)
+#            {
+#                printf("%c", mid);
+#            }
+#            printf("%c\n", lr);
+#        }
+#
+#        printf("\n");
+#    }  
 square_print:
     beq  $s1, $zero, run_check                    # if (square == 0) goto run_check
     la   $t0, square_size                         # t0 = &square_size
@@ -123,17 +162,18 @@ first_or_last_row:
     j begin_loop
     
 not_first_or_last_row:
-    addi $t4, $zero, '|'     # lr = '|'
-    add $t5, $zero, $t1      # mid = square_fill
+    addi $t4, $zero, '|'                          # lr = '|'
+    add $t5, $zero, $t1                           # mid = square_fill
     
 begin_loop:
     # printf("%c", lr);
-    addi $v0, $zero, 11          # syscall for print character
-    add $a0, $zero, $t4
+    addi $v0, $zero, 11                           # syscall for print character
+    add $a0, $zero, $t4                           # print lr
     syscall
 
-    addi $t9, $zero, 1          # i = 1
-    # for (int i=1; i<square_size-1; i++)
+    addi $t9, $zero, 1                            # i = 1   
+
+# for (int i=1; i<square_size-1; i++)
 square_inner_loop:
     # printf("%c", mid);
     addi $v0, $zero, 11                           # syscall for print character
@@ -158,10 +198,21 @@ square_inner_loop:
     addi $t2, $t2, 1                              # row++
     bne  $t3, $zero, square_outer_loop            # if row < square_size, goto square_outer_loop
     
-    addi $v0, $zero, 4
+    addi $v0, $zero, 4                            # print newline
     la   $a0, NEWLINE
     syscall
 
+# python implementation
+# is_ascending = True
+# is_descending = True
+
+# for i in range(len(array)-1):
+#     if array[i] < array[i+1]:
+#         is_ascending = is_ascending and True
+#         is_descending = is_descending and False
+#     elif array[i] > array[i+1]:
+#         is_ascending = is_ascending and False
+#         is_descending = is_descending and True
 run_check:
     beq  $s2, $zero, count_words                  # if (runCheck == 0) goto count_words
     la   $s6, intArray_len                        # s6 = &intArray_len
@@ -275,7 +326,15 @@ print_asc_and_desc:
     la $a0, NEWLINE            
     syscall
         
-
+# python implementation
+# inWord = False
+# count = 0
+# for char in str:
+#     if char == ' ' and inWord:
+#         inWord = False
+#     elif char != ' ' and not inWord:
+#         count += 1
+#         inWord = True
 count_words:
     beq $s3, $zero, reverse_string                # if (countWords == 0) goto reverse_string
     la $t0, str                                   # Load address of the string
@@ -380,7 +439,7 @@ print_reverse_string:
     syscall
 
 end_tasks:
-    lw $ra, 4($sp)                                # get return address from stack
-    lw $fp, 0($sp)                                # restore the caller’s frame pointer
+    lw    $ra, 4($sp)                             # get return address from stack
+    lw    $fp, 0($sp)                             # restore the caller’s frame pointer
     addiu $sp, $sp, 24                            # restore the caller’s stack pointer
-    jr $ra                                        # return to caller’s code
+    jr    $ra                                     # return to caller’s code
