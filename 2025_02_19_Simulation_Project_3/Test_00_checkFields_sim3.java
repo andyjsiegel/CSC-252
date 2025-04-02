@@ -11,7 +11,7 @@ public class Test_00_checkFields_sim3
 	public static void main(String[] args)
 	{
 		Sim3_MUX_8by1   mux  = new Sim3_MUX_8by1();
-		Sim3_ALUElement elem = new Sim3_ALUElement();
+		Sim3_ALUElement alu_element = new Sim3_ALUElement();
 		Sim3_ALU        alu  = new Sim3_ALU(4);
 
 		/* we just just check the various fields - just to see
@@ -34,22 +34,22 @@ public class Test_00_checkFields_sim3
 		System.out.printf("MUX: control=4 in={0,0,0,0,1,0,0,0} -> %s\n",
 		                  mux.out.get());
 
-		elem.aluOp[0].set(true);
-		elem.aluOp[1].set(false);
-		elem.aluOp[2].set(false);
-		elem.bInvert.set(false);
-		elem.a.set(true);
-		elem.b.set(true);
-		elem.carryIn.set(true);
-		elem.less.set(true);
-		elem.execute_pass1();
-		elem.execute_pass2();
+		alu_element.aluOp[0].set(true);
+		alu_element.aluOp[1].set(false);
+		alu_element.aluOp[2].set(false);
+		alu_element.bInvert.set(false);
+		alu_element.a.set(true);
+		alu_element.b.set(true);
+		alu_element.carryIn.set(true);
+		alu_element.less.set(true);
+		alu_element.execute_pass1();
+		alu_element.execute_pass2();
 		System.out.printf("ALU Element: aluOp=1 bInvert=%s : a=%s b=%s carryIn=%s less=%s -> result=%s addResult=%s carryOut=%s\n",
-		                  elem.bInvert.get(),
-		                  elem.a.get(), elem.b.get(),
-		                  elem.carryIn.get(), elem.less.get(),
-		                  elem.result.get(), elem.addResult.get(),
-		                  elem.carryOut.get());
+		                  alu_element.bInvert.get(),
+		                  alu_element.a.get(), alu_element.b.get(),
+		                  alu_element.carryIn.get(), alu_element.less.get(),
+		                  alu_element.result.get(), alu_element.addResult.get(),
+		                  alu_element.carryOut.get());
 
 		alu.aluOp[0].set(false);
 		alu.aluOp[1].set(true);

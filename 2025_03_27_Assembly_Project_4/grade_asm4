@@ -10,7 +10,7 @@ export LC_ALL="C.UTF-8"
 # need a little help for C and assembly.  If you leave either of these blank,
 # then this type of testing simply won't work.
 C_SRC=
-S_SRC=
+S_SRC=asm4.s
 
 
 
@@ -22,7 +22,7 @@ fi
 
 
 
-JAVA_SRCS=$(ls -1 *.java 2>/dev/null | grep -v -i -E "^Test_" | grep -v -E "XOR.java$" | grep -v -E "Base.java$")
+JAVA_SRCS=$(ls -1 *.java 2>/dev/null | grep -v -i -E "^Test_" | grep -v -E "Base.java$")
 if [[ $JAVA_SRCS != "" ]]
 then
   echo "Compiling all of the Java sources - your code, plus all of the testcases..."
@@ -269,7 +269,7 @@ do
       rm $BASE.stderr
 
       echo "     ----- diff OUTPUT -----"
-      diff -u $BASE.out $BASE.student_output
+      diff $BASE.out $BASE.student_output
       echo "     ----- END diff -----"
 
       # sometimes, the difference is only in whitespace.  In intro-level

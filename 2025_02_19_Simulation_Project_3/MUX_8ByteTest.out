@@ -1,0 +1,8 @@
+MUX: control=0 in={1,0,0,0,0,0,0,0} -> true
+MUX: control=1 in={0,1,0,0,0,0,0,0} -> true
+MUX: control=2 in={0,0,1,0,0,0,0,0} -> true
+MUX: control=3 in={0,0,0,1,0,0,0,0} -> true
+MUX: control=4 in={0,0,0,0,1,0,0,0} -> true
+MUX: control=5 in={0,0,0,0,0,1,0,0} -> true
+MUX: control=6 in={0,0,0,0,0,0,1,0} -> true
+MUX: control=7 in={0,0,0,0,0,0,0,1} -> true

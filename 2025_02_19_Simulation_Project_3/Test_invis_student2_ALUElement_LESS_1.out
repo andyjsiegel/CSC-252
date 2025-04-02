@@ -1,0 +1,14 @@
+Inputs:
+  a: 0
+  b: 0
+  bInvert: 0
+  carryIn: 0
+  aluOp: 011
+  less: 1
+
+Pass 1:
+  addResult: 0
+  carryOut: 0
+
+Pass 2:
+  result: 1
