@@ -388,7 +388,8 @@ turtle_searchName_loop:
     beq $s4, $zero, turtle_searchName_notFound                   # if s4 = 0 goto turtle_searchName_notFound
     
     # Prepare arguments for strcmp
-    addi $a0, $s4, 4                                                 # a0 = turtle[i].name 
+    lw   $t0, 4($s0)
+    addi $a0, $t0, 0                                                 # a0 = turtle[i].name 
     addi $a1, $a2, 0
     jal  strcmp                                                   # Call strcmp(a0, a1)
     
