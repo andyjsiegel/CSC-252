@@ -368,7 +368,7 @@ turtle_searchName:
     addiu $sp, $sp, -24                                            # Allocate space on the stack
     sw    $ra, 4($sp)                                              # Save the return address
     sw    $fp, 0($sp)                                              # Save the original frame pointer
-    addiu $fp, $sp, 20                                            # Set frame pointer
+    addiu $fp, $sp, 20                                             # Set frame pointer
 
     # save $s0, $s1, $s2 on the stack 
     addiu $sp, $sp, -20		
@@ -385,27 +385,27 @@ turtle_searchName:
     
 turtle_searchName_loop:
     slt $s4, $s3, $s1                                              # if (i < arrLen) then s4 = 1; else s4 = 0.
-    beq $s4, $zero, turtle_searchName_notFound                   # if s4 = 0 goto turtle_searchName_notFound
+    beq $s4, $zero, turtle_searchName_notFound                     # if s4 = 0 goto turtle_searchName_notFound
     
     # Prepare arguments for strcmp
     lw   $t0, 4($s0)
-    addi $a0, $t0, 0                                                 # a0 = turtle[i].name 
+    addi $a0, $t0, 0                                               # a0 = turtle[i].name 
     addi $a1, $a2, 0
-    jal  strcmp                                                   # Call strcmp(a0, a1)
+    jal  strcmp                                                    # Call strcmp(a0, a1)
     
-    beq  $v0, $zero, turtle_searchName_found                    # if (strcmp(a0, a1) == 0) then goto turtle_searchName_found
+    beq  $v0, $zero, turtle_searchName_found                       # if (strcmp(a0, a1) == 0) then goto turtle_searchName_found
     
-    addi $s0, $s0, 12                                             # Move to next turtle (increment by size of Turtle structure)
-    addi $s3, $s3, 1                                              # i++
-    j    turtle_searchName_loop                                   # Repeat the loop
+    addi $s0, $s0, 12                                              # Move to next turtle (increment by size of Turtle structure)
+    addi $s3, $s3, 1                                               # i++
+    j    turtle_searchName_loop                                    # Repeat the loop
 
 turtle_searchName_found:
-    addi $v0, $s3, 0                                             # return index of found element
-    j    turtle_searchName_epilogue                              # goto turtle_searchName_epilogue
+    addi $v0, $s3, 0                                               # return index of found element
+    j    turtle_searchName_epilogue                                # goto turtle_searchName_epilogue
 
 turtle_searchName_notFound:
-    addi $v0, $zero, -1                                          # return -1
-    j    turtle_searchName_epilogue                              # goto turtle_searchName_epilogue
+    addi $v0, $zero, -1                                            # return -1
+    j    turtle_searchName_epilogue                                # goto turtle_searchName_epilogue
 
 turtle_searchName_epilogue:
     # retrieve values of $s0, ..., $s4 from the stack
@@ -417,10 +417,10 @@ turtle_searchName_epilogue:
     addiu $sp, $sp, 20
 
     # Function Epilogue
-    lw    $ra, 4($sp)                                           # Restore the return address
-    lw    $fp, 0($sp)                                           # Restore frame pointer
-    addiu $sp, $sp, 24                                          # Deallocate space on the stack
-    jr    $ra                                                   # Return from function
+    lw    $ra, 4($sp)                                              # Restore the return address
+    lw    $fp, 0($sp)                                              # Restore frame pointer
+    addiu $sp, $sp, 24                                             # Deallocate space on the stack
+    jr    $ra                                                      # Return from function
 
 
 # void turtle_sortByX_indirect(Turtle **arr, int arrLen) {
